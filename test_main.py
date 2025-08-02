@@ -23,4 +23,3 @@ def test_divide_by_zero():
         assert False  # This should not be reached
     except ValueError:
         assert True
-

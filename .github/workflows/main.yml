@@ -39,8 +39,31 @@ jobs:
       - name: Run black check
         run: black --check .
 
-  test:
     name: Run Unit Tests (pytest)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Install pytest
+        run: pip install pytest
+
+      - name: Run pytest
+        run: pytest -v
+
+    - name: Show current directory
+      run: pwd
+
+    - name: List all files
+      run: ls -R
+
+
+Run Unit Tests (pytest)
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code

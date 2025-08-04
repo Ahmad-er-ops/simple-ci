@@ -1,16 +1,21 @@
-def add(a, b):
-    return a + b
+# main.py
 
+from flask import Flask, request
 
-def subtract(a, b):
-    return a - b
+app = Flask(__name__)
 
+@app.route('/')
+def home():
+    return "Welcome to the Calculator!"
 
-def multiply(a, b):
-    return a * b
+@app.route('/add')
+def add():
+    try:
+        a = int(request.args.get('a', 0))
+        b = int(request.args.get('b', 0))
+        return f"Result: {a + b}"
+    except:
+        return "Error: Invalid input"
 
-
-def divide(a, b):
-    if b == 0:
-        raise ValueError("Cannot divide by zero.")
-    return a / b
+if __name__ == '__main__':
+    app.run()
